@@ -9,13 +9,13 @@
 <ion-content [fullscreen]="true">
 
   <ion-content>
-    <ion-card *ngFor="let oficina of OficinasData">
+    <ion-list>
+    <ion-card  id="card" *ngFor="let oficina of OficinasData">
       <ion-card-header>
-           <img src="https://miro.medium.com/max/1140/0*N0CTJji2zmNtlfXo.png">
-            <ion-card-subtitle>{{oficina.company}}</ion-card-subtitle>
+           <img src="../../assets/imgs//default.png">
         <ion-card-title>
           <ion-text color="success">
-            <h5>{{oficina.nome}}</h5>
+            <h4>{{oficina.nome}}</h4>
           </ion-text>
         </ion-card-title>
       </ion-card-header>
@@ -25,6 +25,12 @@
         {{oficina.rua}} Nº {{oficina.numero}}
       </ion-card-content>
     </ion-card>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
   </ion-content>
 
 </ion-content>

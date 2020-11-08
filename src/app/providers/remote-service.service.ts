@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class RemoteService {
 
   // API path
-  base_path = 'http://localhost:2018/api/v1/oficinas/';
+  base_path = 'http://192.168.1.84:2018/api/v1/oficinas/';
 
   constructor(private http: HttpClient) { }
 
@@ -63,6 +63,15 @@ export class RemoteService {
   getList(): Observable<Garage> {
     return this.http
       .get<Garage>(this.base_path + 'ListarTodos')
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  
+  getListPaginate(page): Observable<Garage> {
+    return this.http
+      .get<Garage>(this.base_path + '?page='+ page )
       .pipe(
         retry(2),
         catchError(this.handleError)
