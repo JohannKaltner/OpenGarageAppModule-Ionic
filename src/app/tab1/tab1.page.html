@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Oficinas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-content>
+    <ion-card *ngFor="let oficina of OficinasData">
+      <ion-card-header>
+           <img src="https://miro.medium.com/max/1140/0*N0CTJji2zmNtlfXo.png">
+            <ion-card-subtitle>{{oficina.company}}</ion-card-subtitle>
+        <ion-card-title>
+          <ion-text color="success">
+            <h5>{{oficina.nome}}</h5>
+          </ion-text>
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{oficina.estado}}, {{oficina.cidade}} - {{oficina.bairro}}<br />
+        {{oficina.rua}} Nº {{oficina.numero}}
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+
+</ion-content>
