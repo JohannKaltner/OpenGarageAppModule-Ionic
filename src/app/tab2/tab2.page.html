@@ -1,17 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+<!-- <ion-header #header [translucent]="true" class='div-header'>
+  <div>
+    <div class='div-header-title'>
+      <ion-grid>
+        <ion-row> 
+          <ion-col class='title-header'>
+            <ion-title>
+              Oficinas
+            </ion-title>
+          </ion-col>
+          <ion-col>
+            <div class="div-header-avatar">
+              <ion-avatar>
+                <img class="header-avatar" src='../../assets/icon/avatar.jpg'>
+              </ion-avatar>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-header>
+<ion-toolbar>
+  <ion-searchbar></ion-searchbar>
+</ion-toolbar> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<app-header #header title='Pesquisa'></app-header>
 
+
+<ion-content scrollEvents="true" (ionScroll)="logScrolling($event)" (ionScrollStart)="scrollStart(header)">
   <app-explore-container name="Tab 2 page"></app-explore-container>
 </ion-content>

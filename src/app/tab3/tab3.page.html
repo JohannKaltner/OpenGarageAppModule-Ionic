@@ -1,17 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
+<!-- <ion-header #header [translucent]="true" class='div-header'>
+  <div>
+    <div class='div-header-title'>
+      <ion-grid>
+        <ion-row>
+           <ion-col class='title-header'>
+            <ion-title>
+              Perfil
+            </ion-title>
+          </ion-col>
+          <ion-col>
+            <div class="div-header-avatar">
+              <ion-avatar>
+                <img class="header-avatar" src='../../assets/icon/avatar.jpg'>
+              </ion-avatar>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-header>
+<ion-toolbar>
+  <ion-searchbar></ion-searchbar>
+</ion-toolbar> -->
+<app-header #header title='Perfil'></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<ion-content scrollEvents="true" (ionScroll)="logScrolling($event)" (ionScrollStart)="scrollStart(header)">
+  <ion-list>
+    <ion-list-header>
+      Configurações
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name="contrast-outline"></ion-icon>
+      <ion-label>Modo Noturno</ion-label>
+      <ion-toggle (ionChange)="onToggleColorTheme($event)"></ion-toggle>
+    </ion-item>
+    <ion-item [routerLink]="['/login']">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <ion-label color="danger">Sair</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

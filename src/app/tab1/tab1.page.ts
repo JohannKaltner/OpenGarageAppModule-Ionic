@@ -1,5 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, Input, Renderer2, ViewChild } from "@angular/core";
+import { Router } from '@angular/router';
 import { RemoteService } from "../providers/remote-service.service";
+import { createAnimation } from '@ionic/core'
+import { IonItemSliding, IonSlides } from '@ionic/angular';
 
 @Component({
   selector: "app-tab1",
@@ -9,17 +12,38 @@ import { RemoteService } from "../providers/remote-service.service";
 export class Tab1Page {
   OficinasData: any;
   url: string;
-  page_number = 1;
+  PageNumber = 1;
+  Categoryid: any = 1;
+  isOpen: any = false;
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400,
+  };
+  selectedCategory: any = 'Carros';
 
-  constructor(public apiService: RemoteService) {
+
+  constructor(public apiService: RemoteService, private router: Router, private renderer: Renderer2) {
     this.OficinasData = [];
   }
+  @ViewChild('slides', { static: true }) slides: IonSlides;
+
+  @Input('header') header: any
+
+
   ngOnInit() {
     this.getPagination(false, "");
   }
 
   ionViewWillEnter() {
     this.getPagination(false, "");
+  }
+
+  next() {
+    this.slides.slideNext();
+  }
+
+  back() {
+    this.slides.slidePrev();
   }
 
   // getAllWorkshops() {
@@ -38,23 +62,68 @@ export class Tab1Page {
   //   });
   // }
 
-  getPagination(isFirstLoad, event) {
+  share(slidingItem: IonItemSliding) {
+    slidingItem.open('end');
+  }
 
-    this.apiService.getListPaginate(this.page_number)
+
+  slideChanged(e: any) {
+    console.log(this.slides.getActiveIndex())
+    this.slides.getActiveIndex().then((index: number) => {
+      if (index === 0) {
+        this.selectedCategory = 'Carros';
+        this.Categoryid = 1;
+      } else {
+        this.selectedCategory = 'Motos';
+        this.Categoryid = 2;
+      }
+      this.OficinasData.splice(0, this.OficinasData.length);
+      this.PageNumber = 1;
+      this.getPagination(false, '');
+    });
+  }
+
+  // getCategory() {
+  //   this.OficinasData = [];
+  //   this.apiService.getByCat(this.Categoryid).subscribe((Response) => {
+  //     this.OficinasData = Response;
+  //   });
+  // }
+
+  getPagination(isFirstLoad, event) {
+    this.apiService.getByCat(this.PageNumber, this.Categoryid)
       .subscribe((data: any) => {
         for (let i = 0; i < data.length; i++) {
           this.OficinasData.push(data[i]);
         }
-        if (isFirstLoad)
+        if (isFirstLoad) {
           event.target.complete();
-        this.page_number++;
+          ++this.PageNumber;
+        }
       }, error => {
         console.log(error);
       })
   }
-  
+
   doInfinite(event) {
     this.getPagination(true, event);
   }
+  Access(item) {
+  }
+
+  // lastX: any;
+  // logScrolling(event) {
+  //   if (event.detail.scrollTop > Math.max(0, this.lastX)) {
+  //     this.renderer.setStyle(this.header, 'margin-top', `-${this.header.clientHeight}px`)
+  //     this.renderer.setStyle(this.header, 'transition', `margin-top 400ms`)
+
+  //   } else {
+  //     this.renderer.setStyle(this.header, 'margin-top', '0')
+  //     this.renderer.setStyle(this.header, 'transition', `margin-top 400ms`)
+
+  //   }
+  //   this.lastX = event.detail.scrollTop;
+
+  // }
 
 }

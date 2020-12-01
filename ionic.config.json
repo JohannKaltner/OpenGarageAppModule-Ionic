@@ -1,7 +1,12 @@
 {
   "name": "radar-angular",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {
+      "enabled": true
+    }
   },
   "type": "angular",
   "id": "4c56da2b"

@@ -1,1 +1,17 @@
+  
+ * {
+    --background: #2dd36f;
+}   
+ion-tab-button[aria-selected=true] {
+    box-shadow: 0 0 0 2px white inset;
+    background-color: white;
+     --color-selected: #2dd36f;
+    border-radius: 100px;
+}
+ion-tab-button {
+    margin: 0px 10px 0px 10px;
+    --color: white;
+    --color-selected: white;
+
+}
 

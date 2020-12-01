@@ -1,36 +1,88 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Oficinas
-    </ion-title>
-  </ion-toolbar>
+<!-- <ion-header #header [translucent]="true" class='div-header'>
+  <div>
+    <div class='div-header-title'>
+      <ion-grid>
+        <ion-row>
+           <ion-col class='title-header'>
+            <ion-title>
+              Oficinas
+            </ion-title>
+          </ion-col>
+          <ion-col>
+            <div class="div-header-avatar">
+              <ion-avatar>
+                <img class="header-avatar" src='../../assets/icon/avatar.jpg'>
+              </ion-avatar>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-header>
+<ion-toolbar >
+<div class='searchbar'>
+    <ion-searchbar></ion-searchbar>
+  </div>
+</ion-toolbar> -->
+<app-header #header title='Oficinas'></app-header>
 
-<ion-content [fullscreen]="true">
-
-  <ion-content>
-    <ion-list>
-    <ion-card  id="card" *ngFor="let oficina of OficinasData">
-      <ion-card-header>
-           <img src="../../assets/imgs//default.png">
-        <ion-card-title>
-          <ion-text color="success">
-            <h4>{{oficina.nome}}</h4>
+<ion-content scrollEvents="true" [fullscreen]="true">
+   <ion-slides (ionSlideDidChange)="slideChanged($event)" #slides class="card-slide" pager="true"
+    [options]="slideOpts">
+    <ion-slide>
+      <ion-icon name="car-sport-outline"></ion-icon>
+    </ion-slide>
+    <ion-slide>
+      <ion-icon name="bicycle-outline"></ion-icon>
+    </ion-slide>
+<!-- 
+  <button type="submit" float-left ion-button  color="primary" class="btnPrev" (click)="prev()">Prev</button>
+  <button type="submit" float-right ion-button color="primary" class="btnNext" (click)="next()">Next</button> -->
+  </ion-slides>
+    <ion-list class='list-css'>
+      <ion-item-divider>
+        <ion-list-header>
+          <ion-text class='title'>
+            <h4> {{selectedCategory}}</h4>
           </ion-text>
-        </ion-card-title>
-      </ion-card-header>
+        </ion-list-header>
+      </ion-item-divider>
+      <div *ngFor="let oficina of OficinasData">
+        <ion-item-sliding #slidingItem>
+          <ion-item (click)="share(slidingItem)">
+            <ion-thumbnail item-left>
+              <img src="../../assets/imgs/default.png">
+            </ion-thumbnail>
+            <div class='titlebox'>
+              <ion-text class='title'>
+                {{oficina.nome}}
+              </ion-text>
+            </div>
+            <ion-note slot="end">
+              10:45 AM
+            </ion-note>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="danger">
+              <ion-icon slot="icon-only" name="arrow-redo-outline"></ion-icon>
+            </ion-item-option>
+            <ion-item-option>
+              <ion-icon slot="icon-only" name="star"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </div>
+    </ion-list>
 
-      <ion-card-content>
-        {{oficina.estado}}, {{oficina.cidade}} - {{oficina.bairro}}<br />
-        {{oficina.rua}} Nº {{oficina.numero}}
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-
-  </ion-content>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Carregando...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="arrow-forward-circle"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
 </ion-content>

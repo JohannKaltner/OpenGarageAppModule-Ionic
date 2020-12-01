@@ -52,7 +52,16 @@ export class RemoteService {
   // Get single student data by ID
   getItem(id): Observable<Garage> {
     return this.http
-      .get<Garage>(this.base_path + '/' + id)
+      .get<Garage>(this.base_path + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  getByCat(Page, CategoriaId): Observable<Garage> {
+    return this.http
+      .get<Garage>(this.base_path + '?page=' + Page + 'ListaPorCategorias/' + CategoriaId)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -68,10 +77,10 @@ export class RemoteService {
         catchError(this.handleError)
       )
   }
-  
+
   getListPaginate(page): Observable<Garage> {
     return this.http
-      .get<Garage>(this.base_path + '?page='+ page )
+      .get<Garage>(this.base_path + '?page=' + page)
       .pipe(
         retry(2),
         catchError(this.handleError)
