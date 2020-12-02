@@ -1,9 +1,9 @@
 <ion-tabs class='tab-main'>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button class='TabLista' tab="listaOficinas">
+    <!-- <ion-tab-button class='TabLista' tab="listaOficinas">
       <ion-icon name="car"></ion-icon>
       <ion-label>Oficinas</ion-label>
-    </ion-tab-button>
+    </ion-tab-button> -->
 
     <ion-tab-button class='TabMap' tab="mapaOficinas">
       <ion-icon name="map"></ion-icon>
@@ -15,9 +15,38 @@
       <ion-label>Procurar</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button class="TabPerfil"  tab="perfil">
+
+    <ion-tab-button></ion-tab-button>
+
+    <ion-tab-button>
+      <ion-icon name="construct-outline"></ion-icon>
+      <ion-label>Serviços</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button class="TabPerfil" tab="perfil">
       <ion-icon name="person"></ion-icon>
       <ion-label>Perfil</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+
+
+<ion-fab vertical="bottom" [routerLink]="['/tabs/listaOficinas']" horizontal="center" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="car"></ion-icon>
+  </ion-fab-button>
+  <!-- <ion-fab-list side="top">
+    <ion-fab-button color="light">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-twitter"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-vimeo"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-google"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list> -->
+</ion-fab>

@@ -1,9 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides pager autoplay="false">
 
-<ion-content>
+    <ion-slide *ngFor="let slide of slides">
+      <img [src]="slide.image" />
+      <h4>{{slide?.title}}</h4>
+      <div [innerHTML]="slide?.description"></div>
+    </ion-slide>
+    <ion-slide>
+      <div class='div-formulario'>
+        <ion-toolbar>
+          <h1>Login</h1>
+        </ion-toolbar>
+        <ion-item>
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-label slot="end" position="stacked">E-Mail</ion-label>
+          <ion-input type='email'></ion-input>
+        </ion-item>
 
+        <ion-item>
+          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          <ion-label slot="end" position="stacked">Senha</ion-label>
+          <ion-input type='password'></ion-input>
+        </ion-item>
+        <div padding>
+          <ion-button size="" href="/tabs/listaOficinas" expand="block">Login</ion-button>
+        </div>
+        <div padding>
+          <ion-toolbar>
+            <ion-title>Outras Opções de Login</ion-title>
+          </ion-toolbar>
+          <ion-button size="small" color="light" expand="block">
+            <ion-icon slot="start" name="logo-facebook"></ion-icon>
+            Login com o Facebook
+          </ion-button>
+          <ion-button size="small" color="light" expand="block">
+            <ion-icon slot="start" name="logo-google"></ion-icon>
+            Login com o Google
+          </ion-button>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

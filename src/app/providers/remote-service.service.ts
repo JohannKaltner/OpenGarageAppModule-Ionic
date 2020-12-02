@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class RemoteService {
 
   // API path
-  base_path = 'http://192.168.1.84:2018/api/v1/oficinas/';
+  base_path = 'http://192.168.1.84:3000/oficinas/';
 
   constructor(private http: HttpClient) { }
 

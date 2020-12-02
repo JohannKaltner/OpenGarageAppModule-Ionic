@@ -77,7 +77,7 @@ export class Tab1Page {
         this.selectedCategory = 'Motos';
         this.Categoryid = 2;
       }
-      this.OficinasData.splice(0, this.OficinasData.length);
+      // this.OficinasData.splice(0, this.OficinasData.length);
       this.PageNumber = 1;
       this.getPagination(false, '');
     });
@@ -91,7 +91,7 @@ export class Tab1Page {
   // }
 
   getPagination(isFirstLoad, event) {
-    this.apiService.getByCat(this.PageNumber, this.Categoryid)
+    this.apiService.getListPaginate(this.PageNumber)
       .subscribe((data: any) => {
         for (let i = 0; i < data.length; i++) {
           this.OficinasData.push(data[i]);

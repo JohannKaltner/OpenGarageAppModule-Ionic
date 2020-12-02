@@ -8,12 +8,14 @@ const routes: Routes = [
   },
   {
     path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+    loadChildren: () => import('./menu/menu.module').then(m => m.MenuPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  }
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
 
 ];
 @NgModule({
